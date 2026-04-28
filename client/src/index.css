@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #07070f;
+  --bg-surface: #0f0f1a;
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.07);
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.2);
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.2);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --critical: #991b1b;
+  --text-primary: #f1f5f9;
+  --text-muted: #64748b;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', sans-serif;
+}
+
+code, pre, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Base custom styles for glassmorphism */
+.glass-panel {
+  @apply bg-[var(--bg-glass)] backdrop-blur-xl border border-[var(--border)];
+}
