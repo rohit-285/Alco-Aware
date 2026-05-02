@@ -24,9 +24,11 @@ import ToleranceProfile from '../components/sections/ToleranceProfile';
 import PersonalStats from '../components/sections/PersonalStats';
 import { BACProvider } from '../context/BACContext';
 import { useBAC } from '../context/BACContext';
+import { useAuth } from '../context/AuthContext';
 
 const PlatformSections = () => {
   const { calculationResult } = useBAC();
+  const { isAuthenticated } = useAuth();
   const [activeTab, setActiveTab] = useState('calculator');
   const tabs = [
     { id: 'calculator', label: 'Calculator' },
@@ -88,8 +90,17 @@ const PlatformSections = () => {
         {activeTab === 'law' && <LegalMap />}
         {activeTab === 'stats' && (
           <>
-            <PersonalStats />
-            <CommunityFeed />
+            {isAuthenticated ? (
+              <>
+                <PersonalStats />
+                <CommunityFeed />
+              </>
+            ) : (
+              <div className="glass-panel rounded-2xl p-8 text-center">
+                <h3 className="text-2xl font-sora font-bold text-white">Login required</h3>
+                <p className="text-text-muted mt-3">Please use the Login button in the top-right corner to view your personal drinking stats.</p>
+              </div>
+            )}
           </>
         )}
         {activeTab === 'learn' && (

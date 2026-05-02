@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import AuthModal from '../auth/AuthModal';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const [authOpen, setAuthOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <motion.nav 
@@ -29,8 +33,29 @@ const Navbar = () => {
           >
             Dashboard
           </Link>
+          {isAuthenticated ? (
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:block text-sm text-text-muted">Hi, {user.name}</span>
+              <button
+                type="button"
+                onClick={logout}
+                className="rounded-xl border border-border px-4 py-2 text-sm font-semibold text-text-muted hover:text-white hover:bg-white/5"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setAuthOpen(true)}
+              className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-black"
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </motion.nav>
   );
 };

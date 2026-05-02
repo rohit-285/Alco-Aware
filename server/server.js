@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/calculate', require('./routes/calculate'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/stats', require('./routes/stats'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/ai', require('./routes/ai'));
 app.use('/api/medications', require('./routes/medications'));
 app.use('/api/location', require('./routes/location'));
@@ -41,6 +42,16 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use.`);
+    console.error('Stop the existing backend process or set a different PORT in server/.env before starting again.');
+    process.exit(1);
+  }
+
+  throw err;
 });

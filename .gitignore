@@ -5,3 +5,4 @@ client/vite.err.log
 server/*.log
 client/*.log
 .env
+server/.env

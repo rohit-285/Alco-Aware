@@ -1,5 +1,5 @@
 {
-  "name": "boozemeter-server",
+  "name": "alcoaware-server",
   "version": "1.0.0",
   "description": "AlcoAware API",
   "main": "server.js",

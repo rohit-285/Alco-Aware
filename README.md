@@ -1,128 +1,137 @@
-AlcoAware – Intelligent Alcohol Awareness Platform
-AlcoAware is a production-grade MERN stack web application designed to promote responsible alcohol consumption through real-time Blood Alcohol Content (BAC) analysis, AI-powered safety insights, behavioral simulation, and region-based legal awareness.
+# AlcoAware
 
-⚠️ Disclaimer: This platform is strictly for educational and awareness purposes only. BAC estimates are approximations and should never replace a certified breathalyzer. Never drink and drive. Always follow your local laws.
+AlcoAware is a full-stack alcohol awareness web application designed to help users understand alcohol consumption, estimate Blood Alcohol Content (BAC), and make safer decisions through educational insights, safety guidance, and drink tracking.
 
+> Disclaimer: This platform provides estimated results only. It is not a medical device, breathalyzer, or legal authority. Never drink and drive. Always follow local laws and medical advice.
 
-🚀 Features
+---
 
-Advanced BAC calculation using Widmark + Watson formula with real-time decay curve
-Interactive India legal awareness map with dry state detection and BAC driving limits
-Behavioral simulation engine (Sober → Euphoric → Confused → Stupor stages)
-Health risk dashboard with liver stress, dehydration, and caloric intake tracking
-AI Drink Advisor powered by Claude AI for personalized safety advice
-Voice input mode — speak your drinks to auto-fill the calculator
-Drink photo recognition — upload a photo to identify drink type and ABV
-Live session tracker with real-time BAC recalculation and drink timeline
-Personalized tolerance profile that learns your drinking patterns over time
-Emergency SOS panel with one-tap access to emergency contacts and GPS alert
-Sobriety streak tracker with badges and shareable milestone cards
-Safe Night Buddy System — auto-alerts your friend if your BAC exceeds a threshold
-Drink limit goal setting with progress bar and escalating warnings
-Community insights feed with anonymous regional drinking trends
-Personal drinking history with weekly and monthly trend charts
-Hangover predictor with severity scoring and personalized recovery plan
-Medication interaction checker with severity-rated alcohol-drug warnings
-Session report PDF export with BAC curve and full drink log
-Drunk Mode UI — auto-activates at BAC ≥ 0.08% with simplified large-button layout
-Smart notification system for sober countdowns and hydration reminders
-Review and feedback system with ratings
-Responsive UI with smooth animations using Framer Motion
+## Features
 
+- Blood Alcohol Content (BAC) Calculator
+- Personalized safety recommendations
+- Time-to-sober estimation
+- Drink history and analytics dashboard
+- Health awareness insights
+- Medication interaction checker
+- Legal awareness information
+- User authentication (Email + Google Login)
+- Responsive design for mobile and desktop
 
-🛠️ Tech Stack
-Frontend: React.js, React Router, Tailwind CSS, Framer Motion, Recharts, Axios, Zustand, React Query, React Leaflet, jsPDF
-Backend: Node.js, Express.js, MongoDB, Mongoose, JSON Web Tokens, bcryptjs, Nodemailer, express-validator, Multer, node-cron
-External APIs: Anthropic Claude API (AI Advisor + Photo Recognition)
-Deployment: Vercel (Frontend), Render (Backend), MongoDB Atlas
+---
 
-📂 Project Structure
-alcoaware/
-├── client/          → React frontend
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── context/
-│       ├── hooks/
-│       ├── store/
-│       └── utils/
-└── server/          → Node.js backend
-    ├── controllers/
-    ├── models/
-    ├── routes/
-    ├── middleware/
-    └── utils/
+## Tech Stack
 
-⚙️ Setup Instructions
-1. Clone the Repository
-bashgit clone https://github.com/yourusername/alcoaware.git
-cd alcoaware
-2. Install Dependencies
-bash# Backend
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+
+---
+
+## Installation & Setup
+
+### Clone Repository
+
+```bash
+git clone <your-repository-url>
+cd AlcoAware
+```
+
+### Install Backend Dependencies
+
+```bash
 cd server
 npm install
+```
 
-# Frontend
-cd ../client
+### Install Frontend Dependencies
+
+```bash
+cd client
 npm install
-3. Configure Environment Variables
-Create a .env file inside the server/ folder:
-envMONGO_URI=mongodb://127.0.0.1:27017/alcoaware
+```
+
+---
+
+## Environment Variables
+
+Create a `server/.env` file:
+
+```env
+MONGO_URI=your_mongodb_connection_string
 PORT=5000
 NODE_ENV=development
-JWT_SECRET=your_jwt_secret_key
-JWT_EXPIRE=7d
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your@gmail.com
-EMAIL_PASS=your_app_password
-ANTHROPIC_API_KEY=your_claude_api_key
-FRONTEND_URL=http://localhost:3000
-Create a .env file inside the client/ folder:
-envREACT_APP_API_BASE=http://localhost:5000/api
-4. Start the Application
-bash# Run backend (Terminal 1)
+JWT_SECRET=your_jwt_secret
+JWT_REFRESH_SECRET=your_jwt_refresh_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+FRONTEND_URL=http://localhost:5173
+```
+
+---
+
+## Run Project
+
+### Start Backend
+
+```bash
 cd server
 npm run dev
+```
 
-# Run frontend (Terminal 2)
+### Start Frontend
+
+```bash
 cd client
-npm start
+npm run dev
+```
 
-🌐 API Endpoints
-MethodEndpointDescriptionPOST/api/auth/registerRegister new userPOST/api/auth/loginLogin and receive JWTGET/api/auth/meGet current userPOST/api/calculateCalculate BAC and store resultPOST/api/sessions/startStart a live drink sessionPOST/api/sessions/:id/addAdd drink to active sessionGET/api/sessions/:id/bacGet current BAC for sessionPATCH/api/sessions/:id/endEnd sessionGET/api/historyGet personal drinking historyPOST/api/buddy/requestSend a buddy invitePOST/api/ai/adviceGet AI drink advisor responsePOST/api/image/identify-drinkIdentify drink from photoPOST/api/medications/checkCheck alcohol-drug interactionsPOST/api/streak/checkinLog a sober dayPOST/api/reviewsSubmit a reviewGET/api/reviewsGet all reviewsGET/api/statsFetch platform analyticsGET/api/stats/communityGet regional community insights
+Application will run at:
 
-🧠 Core Formula
-Widmark BAC Formula:
-BAC = (A / (W × r)) × 100
+```bash
+http://localhost:5173
+```
 
-A = Alcohol consumed in grams (Volume × ABV% × 0.789)
-W = Body weight in grams
-r = Gender constant: 0.68 (male), 0.55 (female)
-BAC Decay:
-Current BAC = Raw BAC − (0.015 × Hours elapsed)
-Hours to Sober = Current BAC / 0.015
+---
 
-🚢 Deployment
+## Project Structure
 
-Frontend → Deploy the client/ folder on Vercel. Set REACT_APP_API_BASE to your backend URL.
-Backend → Deploy the server/ folder on Render. Add all environment variables in the dashboard.
-Database → Use MongoDB Atlas and update MONGO_URI with your connection string.
+```text
+AlcoAware/
+├── client/
+├── server/
+├── README.md
+└── package.json
+```
 
+---
 
-🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-bashgit checkout -b feature/your-feature-name
-git commit -m "feat: describe your change"
-git push origin feature/your-feature-name
+## Security
 
-👨‍💻 Author
+Never upload your real `.env` file to :contentReference[oaicite:0]{index=0}.
+
+Add this to `.gitignore`:
+
+```gitignore
+.env
+```
+
+---
+
+## Author
+
 Rohit Sharma
-B.Tech Computer Science Engineering
-GitHub: @yourusername
-LinkedIn: Rohit Sharma
 
-📄 License
-This project is licensed under the MIT License.
+---
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+## License
+
+MIT License
