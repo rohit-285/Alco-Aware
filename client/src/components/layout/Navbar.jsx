@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Button from '../ui/Button';
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,7 +17,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 group">
           <span className="text-2xl" role="img" aria-label="beer">🍺</span>
           <span className="font-sora font-bold text-lg tracking-tight text-white group-hover:text-primary transition-colors">
-            Booze<span className="text-primary">Meter</span>
+            Alco<span className="text-primary">Aware</span>
           </span>
         </Link>
         <div className="flex items-center gap-4">
@@ -28,7 +27,7 @@ const Navbar = () => {
               !isHome ? 'text-primary' : 'text-text-muted hover:text-white'
             }`}
           >
-            Insights & Stats
+            Dashboard
           </Link>
         </div>
       </div>

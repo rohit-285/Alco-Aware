@@ -92,7 +92,7 @@ const StatsPage = () => {
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-sora font-bold text-white mb-4">Global Insights 📊</h1>
           <p className="text-text-muted font-inter max-w-2xl text-lg">
-            Aggregated, anonymous statistics from all BoozeMeter calculations worldwide.
+            Aggregated, anonymous statistics from all AlcoAware calculations worldwide.
           </p>
         </div>
 

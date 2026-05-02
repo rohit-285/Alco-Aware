@@ -27,9 +27,13 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/calculate', require('./routes/calculate'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/stats', require('./routes/stats'));
+app.use('/api/ai', require('./routes/ai'));
+app.use('/api/medications', require('./routes/medications'));
+app.use('/api/location', require('./routes/location'));
+app.use('/api/stats/community', require('./routes/communityStats'));
 
 app.get('/', (req, res) => {
-  res.send('BoozeMeter API running...');
+  res.send('AlcoAware API running...');
 });
 
 // Error handling

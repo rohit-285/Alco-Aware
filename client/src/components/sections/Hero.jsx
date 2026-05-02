@@ -58,7 +58,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl lg:text-7xl font-sora font-extrabold text-white leading-tight tracking-tight mb-4"
           >
-            Booze<span className="text-primary drop-shadow-[0_0_20px_rgba(245,158,11,0.3)]">Meter</span> 🍺
+            Alco<span className="text-primary drop-shadow-[0_0_20px_rgba(245,158,11,0.3)]">Aware</span>
           </motion.h1>
 
           <motion.h2 

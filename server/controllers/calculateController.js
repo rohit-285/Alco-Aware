@@ -1,37 +1,66 @@
 const { calculateBAC } = require('../utils/bacEngine');
 const Calculation = require('../models/Calculation');
-const { successResponse, errorResponse } = require('../utils/responseHelper');
+const { successResponse } = require('../utils/responseHelper');
 
 exports.calculate = async (req, res, next) => {
   try {
-    const { weight, gender, experience, drinkType, drinkCount } = req.body;
-
-    // Calculate BAC
-    const { bac, bacLevel, totalAlcoholG, drinkVolume } = calculateBAC({
+    const {
       weight,
       gender,
-      drinkType,
-      drinkCount
-    });
+      experience = 'occasional',
+      drinkType = 'custom',
+      drinkCount,
+      drinkingDuration = 0,
+      mealType = 'light',
+      hydrationLevel = 3,
+      waterGlasses = 0,
+      toleranceLevel = 3,
+      drinkingFrequency = 'occasional',
+      drinks
+    } = req.body;
 
-    // Save calculation to DB
-    const calculation = await Calculation.create({
+    const result = calculateBAC({
       weight,
       gender,
-      experience,
+      drinkingDuration,
+      mealType,
+      hydrationLevel,
+      waterGlasses,
+      toleranceLevel,
+      drinkingFrequency,
       drinkType,
       drinkCount,
-      bac,
-      bacLevel,
-      totalAlcoholG
+      drinks
     });
 
+    let calculation = null;
+    try {
+      calculation = await Calculation.create({
+        weight,
+        gender,
+        experience,
+        drinkType,
+        drinkCount: result.drinks.length,
+        drinkingDuration,
+        mealType,
+        hydrationLevel,
+        waterGlasses,
+        toleranceLevel,
+        drinkingFrequency,
+        drinks: result.drinks,
+        bac: result.bac,
+        bacLevel: result.bacLevel,
+        totalAlcoholG: result.totalAlcoholG,
+        hoursToSober: result.hoursToSober,
+        calories: result.calories
+      });
+    } catch (saveError) {
+      console.error('Calculation save failed:', saveError.message);
+    }
+
     return successResponse(res, 201, {
-      bac,
-      bacLevel,
-      totalAlcoholG,
-      drinkVolume,
-      id: calculation._id
+      ...result,
+      id: calculation?._id || null
     }, 'BAC Calculated successfully');
   } catch (err) {
     next(err);

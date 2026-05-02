@@ -101,7 +101,7 @@ const Reviews = () => {
     <section className="py-24 max-w-7xl mx-auto px-4 border-t border-border mt-12 mb-20">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-sora font-semibold text-white">Community Feedback 💬</h2>
-        <p className="text-text-muted mt-3">What others are saying about BoozeMeter.</p>
+        <p className="text-text-muted mt-3">What others are saying about AlcoAware.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

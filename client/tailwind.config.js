@@ -20,6 +20,7 @@ export default {
         border: 'var(--border)',
         primary: {
           DEFAULT: 'var(--primary)',
+          dark: '#4f46e5',
           glow: 'var(--primary-glow)',
         },
         accent: {
@@ -27,8 +28,18 @@ export default {
           glow: 'var(--accent-glow)',
         },
         success: 'var(--success)',
-        warning: 'var(--warning)',
-        danger: 'var(--danger)',
+        safe: {
+          DEFAULT: '#22c55e',
+          dark: '#16a34a',
+        },
+        warning: {
+          DEFAULT: 'var(--warning)',
+          dark: '#d97706',
+        },
+        danger: {
+          DEFAULT: 'var(--danger)',
+          dark: '#dc2626',
+        },
         critical: 'var(--critical)',
         text: {
           primary: 'var(--text-primary)',

@@ -37,3 +37,16 @@ code, pre, .mono {
 .glass-panel {
   @apply bg-[var(--bg-glass)] backdrop-blur-xl border border-[var(--border)];
 }
+
+.drunk-mode {
+  filter: contrast(1.15);
+}
+
+.drunk-mode main {
+  font-size: 1.15rem;
+}
+
+.drunk-mode button,
+.drunk-mode a {
+  min-height: 56px;
+}

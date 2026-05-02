@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+client/vite.out.log
+client/vite.err.log
+server/*.log
+client/*.log
+.env
