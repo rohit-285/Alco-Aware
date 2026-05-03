@@ -15,7 +15,9 @@ const app = express();
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: [
+    'https://alco-aware.vercel.app'
+  ],
   credentials: true
 }));
 app.use(compression());
