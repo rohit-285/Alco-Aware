@@ -1,8 +1,6 @@
 node_modules/
-client/dist/
-client/vite.out.log
-client/vite.err.log
-server/*.log
-client/*.log
+client/node_modules/
+server/node_modules/
+dist/
 .env
 server/.env
