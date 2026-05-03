@@ -29,7 +29,7 @@ export const BACProvider = ({ children }) => {
   const calculate = async (data) => {
     setIsCalculating(true);
     try {
-      const response = await api.post('/calculate', data);
+     const response = await api.post('/api/calculate', data);
       
       if (response.success) {
         const entry = {
