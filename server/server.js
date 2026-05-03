@@ -12,14 +12,22 @@ connectDB();
 
 const app = express();
 
-// Middleware
-app.use(helmet());
-app.use(cors({
+// CORS Configuration
+const corsOptions = {
   origin: [
+    'http://localhost:5173',
     'https://alco-aware.vercel.app'
   ],
-  credentials: true
-}));
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+// Middleware
+app.use(helmet());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,14 +55,16 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
+
 const server = app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  console.log(
+    `Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`
+  );
 });
 
 server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
     console.error(`Port ${PORT} is already in use.`);
-    console.error('Stop the existing backend process or set a different PORT in server/.env before starting again.');
     process.exit(1);
   }
 
