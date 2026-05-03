@@ -102,7 +102,7 @@ const AuthModal = ({ open, onClose }) => {
         <div className="min-h-11 flex justify-center" ref={googleButtonRef} />
         {googleError && <p className="mt-2 text-sm text-danger text-center">{googleError}</p>}
         <p className="mt-3 text-xs text-text-muted text-center">
-          For Google login on localhost, add <span className="text-white">http://localhost:5173</span> in Google Cloud OAuth Authorized JavaScript origins.
+          For Google login on localhost, add <span className="text-white">https://alco-aware.onrender.com</span> in Google Cloud OAuth Authorized JavaScript origins.
         </p>
 
         <div className="my-5 flex items-center gap-3 text-xs text-text-muted">
